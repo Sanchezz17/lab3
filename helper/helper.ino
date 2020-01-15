@@ -9,10 +9,9 @@ Tone tone1;
 #define PIN_BUZZER 6
 unsigned long noteStartedMs;
 
+const int address = 10;
 
 int notes[] = {NOTE_A3, NOTE_B3, NOTE_C3, NOTE_D3, NOTE_E3, NOTE_F3, NOTE_G3, NOTE_GS3, NOTE_SILENCE};
-double duration = 1;
-
 
 int currentColor = unknown;
 
@@ -24,25 +23,18 @@ void setup()
     Wire.begin();
 }
 
-
 void loop() 
 {
     currentColor = readColor();
     Serial.print("Current color: ");
     Serial.println(currentColor);
-    playNote(currentColor);
+    tone1.play(notes[currentColor]);
     delay(2000);
-};
+}
 
 int readColor()
 {
-    Wire.requestFrom(10, 1);
-    if (Wire.available()) {
+    Wire.requestFrom(address, 1);
+    if (Wire.available()) 
       return Wire.read();
-    }
-}
-
-void playNote(int index)
-{
-    tone1.play(notes[currentColor]);
 }

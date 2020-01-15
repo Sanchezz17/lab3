@@ -58,22 +58,21 @@ int convert_rgb_to_color(colorData rgb)
     int g = rgb.value[TCS230_RGB_G];
     int b = rgb.value[TCS230_RGB_B];
 
-    
     if (r < radius && g < radius && b < radius)
       return black;
     if (255 - r < radius && 255 - g < radius && 255 - b < radius)
       return white;
+    if (abs(redRGB[0]- r) < radius && abs(redRGB[1] - g) < radius && abs(redRGB[2] - b) < radius)
+      return red;
     if (abs(purpleRGB[0]- r) < radius && abs(purpleRGB[1] - g) < radius && abs(purpleRGB[2] - b) < radius)
       return purple;
     if (abs(yellowRGB[0]- r) < radius && abs(yellowRGB[1] - g) < radius && abs(yellowRGB[2] - b) < radius)
       return yellow;
     if (abs(orangeRGB[0]- r) < radius && abs(orangeRGB[1] - g) < radius && abs(orangeRGB[2] - b) < radius)
       return orange;
-    if (abs(redRGB[0]- r) < radius && abs(redRGB[1] - g) < radius && abs(redRGB[2] - b) < radius)
-      return red;
-    if ((abs(greenRGB[0]- r) < radius && abs(greenRGB[1] - g) < radius && abs(greenRGB[2] - b) < radius))
+    if (abs(greenRGB[0]- r) < radius && abs(greenRGB[1] - g) < radius && abs(greenRGB[2] - b) < radius)
       return green;
-    if ((abs(blueRGB[0]- r) < radius && abs(blueRGB[1] - g) < radius && abs(blueRGB[2] - b) < radius))
+    if (abs(blueRGB[0]- r) < radius && abs(blueRGB[1] - g) < radius && abs(blueRGB[2] - b) < radius)
       return blue;
     return unknown;
 }
@@ -84,8 +83,7 @@ void print_rgb(colorData rgb)
     Serial.print(" ");
     Serial.print(rgb.value[TCS230_RGB_G]);
     Serial.print(" ");
-    Serial.print(rgb.value[TCS230_RGB_B]);
-    Serial.println();
+    Serial.println(rgb.value[TCS230_RGB_B]);
 }
 
 void handleRequest() {
