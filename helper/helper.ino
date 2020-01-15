@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "Wire.h"
 #include "pitches.h"
-#include "colors.h"
 #include <Tone.h>
 
 Tone tone1;
@@ -13,8 +12,6 @@ const int address = 10;
 
 int notes[] = {NOTE_A3, NOTE_B3, NOTE_C3, NOTE_D3, NOTE_E3, NOTE_F3, NOTE_G3, NOTE_GS3, NOTE_SILENCE};
 
-int currentColor = unknown;
-
 void setup()
 {    
     tone1.begin(PIN_BUZZER);
@@ -25,7 +22,7 @@ void setup()
 
 void loop() 
 {
-    currentColor = readColor();
+    int currentColor = readColor();
     Serial.print("Current color: ");
     Serial.println(currentColor);
     tone1.play(notes[currentColor]);

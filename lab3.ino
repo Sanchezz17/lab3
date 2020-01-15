@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include "Wire.h"
-#include "./helper/colors.h"
 #include <MD_TCS230.h>
 
 #define  S0_OUT  2
@@ -8,6 +7,18 @@
 #define  S2_OUT  4
 #define  S3_OUT  5
 MD_TCS230 colorSensor(S2_OUT, S3_OUT, S0_OUT, S1_OUT);
+
+enum Colors{
+  black = 0,
+  red = 1,
+  green = 2,
+  blue = 3,
+  purple = 4,
+  orange = 5,
+  yellow = 6,
+  white = 7,
+  unknown = 8
+};
 
 int radius = 10;
 int redRGB[] = {101, 16, 17};
